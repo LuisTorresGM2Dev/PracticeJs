@@ -32,3 +32,42 @@ let producto2 ={
 let productos =[];
 productos.push(producto1, producto2);
 console.log(productos);
+
+//////////////////////////USER LOGIN///////////////////
+let productos =[];
+
+function crearProducto(titulo, descripcion, precio, imagen){
+  let producto = {
+    titulo,
+    descripcion,
+    precio,
+    imagen,
+  };
+  return producto;
+}
+
+function subirProductos(producto, array){
+  array.push(producto);
+  return array;
+}
+let garen = {
+  nombre:'Garen',
+  habilidades: ['q','w','r'],
+  admin: true
+};
+function login(usuario){
+  if(usuario.admin){
+    subirProductos(
+    crearProducto('casaca', 'del 10',300, '/img/casacaDel10.png'),
+    productos
+    );
+    
+    productos.push(
+    crearProducto('casaca', 'del 10',300, '/img/casacaDel10.png')
+    );
+  }  else{
+    alert('Que haces aca bobo?');
+  }
+}
+login (garen);
+console.log(productos);
