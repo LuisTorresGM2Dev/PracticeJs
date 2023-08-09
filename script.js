@@ -83,22 +83,23 @@ let Credenciales = {
   contraseña: '1234'
 };
 
-// Logica de Login
-function comparation (){ 
-  let usuario    = prompt('Ingrese nombre de usuario');
-  let contraseña = prompt('Ingrese contraseña');
+// Logica de Login{
+function comparation (){
+  for(let x=1; x<= 3; x++){
+    let usuario    = prompt('Ingrese nombre de usuario');
+    let contraseña = prompt('Ingrese contraseña');
 
-  console.log(usuario);
-  console.log(contraseña);
+    console.log(usuario);
+    console.log(contraseña);
 
-  if(usuario == Credenciales.usuario & contraseña == Credenciales.contraseña){
+    if(usuario == Credenciales.usuario & contraseña == Credenciales.contraseña){
 
     console.log('Logueado');
     return true;
 
   } else{
     console.log('Bloqueado')
-    return false;
   }
+}
 }
 comparation();
