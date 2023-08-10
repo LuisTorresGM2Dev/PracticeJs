@@ -78,28 +78,64 @@
 
 
 // Credenciales guardadas en la base de datos 
-let Credenciales = {
-  usuario: 'admin',
-  contraseña: '1234'
-};
+// let Credenciales = {
+//   usuario: 'admin',
+//   contraseña: '1234'
+// };
 
-// Logica de Login{
-function comparation (){
-  for(let x=1; x<= 3; x++){
-    let usuario    = prompt('Ingrese nombre de usuario');
-    let contraseña = prompt('Ingrese contraseña');
+// // Logica de Login{
+// function comparation (){
+//   for(let x=1; x<= 3; x++){
+//     let usuario    = prompt('Ingrese nombre de usuario');
+//     let contraseña = prompt('Ingrese contraseña');
 
-    console.log(usuario);
-    console.log(contraseña);
+//     console.log(usuario);
+//     console.log(contraseña);
 
-    if(usuario == Credenciales.usuario & contraseña == Credenciales.contraseña){
+//     if(usuario == Credenciales.usuario & contraseña == Credenciales.contraseña){
 
-    console.log('Logueado');
-    return true;
+//     console.log('Logueado');
+//     return true;
 
-  } else{
-    console.log('Bloqueado')
+//   } else{
+//     console.log('Bloqueado')
+//   }
+// }
+// }
+// comparation();
+
+//////////Juego Whil////////
+// const numeroAIterar = prompt('Mandale un numero rey');
+// const salir = Number(prompt('Que numero te gusta pa salir?'));
+
+// for (let i = 1; i <= Number(numeroAIterar); i++) {
+//   if (i % 2 === 0) {
+//     console.log(`
+//             El numero ${i} es par
+//         `);
+//   }
+
+//   if (i === salir) {
+//     console.log(i);
+//     break;
+//   }
+// }
+
+let intentos = 0;
+const maxIntentos = 3;
+let numeroUsuario = Number(prompt('¿Qué número tiras?'));
+const numeroSecreto = 7;
+
+do {
+  if (numeroUsuario === numeroSecreto) {
+    console.log('¡Epa!, le pegaste pa');
+    break;
+  } else {
+    intentos++;
+    if (intentos < maxIntentos) {
+      numeroUsuario = Number(prompt('Ingresá otro número'));
+    } else {
+      console.log('Tas bloqueado pa');
+    }
   }
-}
-}
-comparation();
+} while (intentos < maxIntentos);
