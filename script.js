@@ -33,7 +33,8 @@
 // productos.push(producto1, producto2);
 // console.log(productos);
 
-// ////////////////////////USER LOGIN///////////////////
+// //////////////////////// USER LOGIN ///////////////////
+
 // let productos =[];
 
 // function crearProducto(titulo, descripcion, precio, imagen){
@@ -77,13 +78,13 @@
 //////////////////Login con Prompt//////////////////////
 
 
-// Credenciales guardadas en la base de datos 
+//Credenciales guardadas en la base de datos 
 // let Credenciales = {
 //   usuario: 'admin',
 //   contraseña: '1234'
 // };
 
-// // Logica de Login{
+// Logica de Login{
 // function comparation (){
 //   for(let x=1; x<= 3; x++){
 //     let usuario    = prompt('Ingrese nombre de usuario');
@@ -104,38 +105,74 @@
 // }
 // comparation();
 
-//////////Juego Whil////////
-// const numeroAIterar = prompt('Mandale un numero rey');
-// const salir = Number(prompt('Que numero te gusta pa salir?'));
+//////////Juego While////////
 
-// for (let i = 1; i <= Number(numeroAIterar); i++) {
-//   if (i % 2 === 0) {
-//     console.log(`
-//             El numero ${i} es par
-//         `);
-//   }
+// let intentos = 0;
+// const maxIntentos = 3;
+// let numeroUsuario = Number(prompt('¿Qué número tiras?'));
+// const numeroSecreto = 7;
 
-//   if (i === salir) {
-//     console.log(i);
+// do {
+//   if (numeroUsuario === numeroSecreto) {
+//     console.log('¡Epa!, le pegaste pa');
 //     break;
+//   } else {
+//     intentos++;
+//     if (intentos < maxIntentos) {
+//       numeroUsuario = Number(prompt('Ingresá otro número'));
+//     } else {
+//       console.log('Tas bloqueado pa');
+//     }
 //   }
-// }
+// } while (intentos < maxIntentos);
 
-let intentos = 0;
-const maxIntentos = 3;
-let numeroUsuario = Number(prompt('¿Qué número tiras?'));
-const numeroSecreto = 7;
-
-do {
-  if (numeroUsuario === numeroSecreto) {
-    console.log('¡Epa!, le pegaste pa');
-    break;
-  } else {
-    intentos++;
-    if (intentos < maxIntentos) {
-      numeroUsuario = Number(prompt('Ingresá otro número'));
-    } else {
-      console.log('Tas bloqueado pa');
+///////// Menu /////////
+const userAdmin = {
+  username:'admin',
+  password:"1234"
+}
+ function sesion(){
+   for (let x=1 ; x<= 3; x++ ){
+    const username = prompt('ingrese el usuario');
+    const password = prompt('password');
+    let check = {
+      username : username,
+      password : password
+    }
+    if(check.username == userAdmin.username && check.password ==  userAdmin.password){
+      console.log('logeado')
+      console.log(username)
+      console.log(password)
+      return check;
+    } else{
+      console.log('no logeado')
+      return false;
     }
   }
-} while (intentos < maxIntentos);
+}
+check = sesion()
+function ingresarProducto() {
+let producto = prompt("Ingrese un producto:");
+let productosGuardados = localStorage.getItem("productos");
+let productos = productosGuardados ? JSON.parse(productosGuardados) : [];
+productos.push(producto);
+localStorage.setItem("productos", JSON.stringify(productos));
+console.log("Producto ingresado: " + producto);
+}
+function convertirAString() {
+let productos = productosGuardados ? JSON.parse(productosGuardados) : [];
+let productosString = JSON.stringify(productos);
+console.log("Productos como texto: " + productosString);
+}
+while (check.password == userAdmin.password) {
+const opcion = prompt("Ingrese una opción:\n1. Ingresar producto\n2. Convertir en texto\n3. Salir");
+if (opcion === "1") {
+  ingresarProducto();
+} else if (opcion === "2") {
+  convertirAString();
+} else if (opcion === "3") {
+  break;
+} else {
+  console.log("Opción inválida. Por favor, ingrese una opción válida.");
+}
+}
