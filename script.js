@@ -127,52 +127,73 @@
 // } while (intentos < maxIntentos);
 
 ///////// Menu /////////
-const userAdmin = {
-  username:'admin',
-  password:"1234"
+let products = [];
+
+const User = {
+  Username: "admin",
+  Password: "1234",
 }
- function sesion(){
-   for (let x=1 ; x<= 3; x++ ){
-    const username = prompt('ingrese el usuario');
-    const password = prompt('password');
-    let check = {
-      username : username,
-      password : password
+
+function login() {
+  for (let intentos = 1; intentos <= 3; intentos++) {
+    const Username = document.getElementById('username').value;
+    const Password = document.getElementById('password').value;
+
+    console.log(Username);
+    console.log(Password);
+
+    if (Username == User.Username && Password == User.Password) {
+      console.log("logged in");
+      return true;
     }
-    if(check.username == userAdmin.username && check.password ==  userAdmin.password){
-      console.log('logeado')
-      console.log(username)
-      console.log(password)
-      return check;
-    } else{
-      console.log('no logeado')
-      return false;
+    else {
+      console.log("attempt failed, try again")
     }
   }
+  return false;
+};
+
+main();
+
+function mainMenu() {
+  const menu = prompt(`Menú
+    [0] - Create a product
+    [1] - Show products
+    [2] - Go out`
+  );
+
+  if (menu == 0) {
+    createProduct();
+  }
+
+  if (menu == 1) {
+    alert("List of products")
+    console.log(products);
+  }
+
+  if (menu == 2) {
+    return false
+  }
 }
-check = sesion()
-function ingresarProducto() {
-let producto = prompt("Ingrese un producto:");
-let productosGuardados = localStorage.getItem("productos");
-let productos = productosGuardados ? JSON.parse(productosGuardados) : [];
-productos.push(producto);
-localStorage.setItem("productos", JSON.stringify(productos));
-console.log("Producto ingresado: " + producto);
+
+function main() {
+  if (login() == true) {
+    mainMenu()
+  }
 }
-function convertirAString() {
-let productos = productosGuardados ? JSON.parse(productosGuardados) : [];
-let productosString = JSON.stringify(productos);
-console.log("Productos como texto: " + productosString);
+
+function createProduct() {
+  let product = {
+    title: prompt(`Enter the product title`),
+    description: prompt(`Enter the product description`),
+    price: prompt(`Enter the product price`),
+  };
+  uploadProducts(product)
+  console.log(products);
 }
-while (check.password == userAdmin.password) {
-const opcion = prompt("Ingrese una opción:\n1. Ingresar producto\n2. Convertir en texto\n3. Salir");
-if (opcion === "1") {
-  ingresarProducto();
-} else if (opcion === "2") {
-  convertirAString();
-} else if (opcion === "3") {
-  break;
-} else {
-  console.log("Opción inválida. Por favor, ingrese una opción válida.");
-}
+
+function uploadProducts(product, array) {
+  products.push(product);
+  const productsJSON = JSON.stringify(products);
+  localStorage.setItem(`Products`, productsJSON);
 }
