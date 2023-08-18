@@ -38,7 +38,13 @@ body{
     border-radius: 8px ;
     border: none;
     background: #D0CACA;
+    transition: all 1s;
 }
+
+input:hover{
+    background: #F95B2E;
+}
+
 .confirm{
     display: flex;
     width: 100%;
@@ -51,8 +57,11 @@ body{
     border: none;
     color: white;
     background: #F95B2E;
+    transition: all 1s;
 }
-
+button:hover{
+    
+}
 @media (max-width: 800px){
     .container{
         display: flex;
